@@ -20,9 +20,9 @@ if (isset($_POST['submit'])) {
                     'user' => $user,
                     'pass' => $pass
                 ]);
-                header('location:login1.php');
+                header('location:login1.php?error=true');
             } else {
-                header('location:login.php');
+                header('location:login.php?error=false');
             }
         }
     }
@@ -32,7 +32,15 @@ if (isset($_POST['submit'])) {
 
 ?>
 <div class="conteiner">
+        <?
+            if($_GET['error']){
+                if($_GET['false']){
+                    
+                }
+            }
+    ?>
     <div class="row mt-4  justify-content-center">
+    <a href="index.php" type="button" class="btn-close " aria-label="Close"></a>
         <div class="col-6 card bg-light">
             <h2 class="fs-1 text-center pt-3 ">
                 Sign up

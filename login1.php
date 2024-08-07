@@ -26,13 +26,17 @@ if (isset($_POST['submit1'])) {
 
 ?>
 <div class="conteiner">
+
     <div class="row mt-4  justify-content-center">
+        <a href="index.php" type="button" class="btn-close " aria-label="Close"></a>
         <div class="col-6 card bg-light">
+        
             <h2 class="fs-1 text-center pt-3 ">
                 Sign up
             </h2>
+            
             <p class="text-center lead ">Kirish</p>
-            <form action="login1.php" method="post">
+            <form action="login1.php" method="post" class="">
                 <div class="input-group mt-3">
                     <span class="input-group-text"><i class="bi bi-at"></i></span>
                     <input type="text" name="users" placeholder="Username" class="form-control">
