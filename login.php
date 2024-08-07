@@ -1,6 +1,6 @@
 <? include 'header.php'; ?>
 <?
- session_start();
+session_start();
 
 if (empty($_SESSION['xotira'])) {
     $_SESSION['xotira'] = [];
@@ -20,11 +20,15 @@ if (isset($_POST['submit'])) {
                     'user' => $user,
                     'pass' => $pass
                 ]);
-                header('location:login1.php?error=true');
+                header('location:login1.php');
             } else {
-                header('location:login.php?error=false');
+                header('location:login.php?error=true');
             }
+        } else {
+            header('location:login.php?error=toldir');
         }
+    } else {
+        header('location:login.php?error=toldir');
     }
 }
 
@@ -32,15 +36,40 @@ if (isset($_POST['submit'])) {
 
 ?>
 <div class="conteiner">
-        <?
-            if($_GET['error']){
-                if($_GET['false']){
-                    
+    <div class="row">
+        <div class="col-6 offset-3">
+            <?
+            if (isset($_GET['error'])) {
+                if ($_GET['error'] == 'toldir') {
+            ?>
+
+                    <center class="mt-5 mb-5">
+                        <h1 class="alert alert-danger"> <i class="bi bi-exclamation-octagon-fill "></i> Ma'lumot To'ldiring</h1>
+                    </center>
+            <?
                 }
             }
-    ?>
+            ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 offset-3">
+            <?
+            if (isset($_GET['error'])) {
+                if ($_GET['error'] == 'true') {
+            ?>
+
+                    <center class="mt-5 mb-5">
+                        <h1 class="alert alert-danger"> <i class="bi bi-exclamation-octagon-fill "></i> Parollar bir birga mos emas</h1>
+                    </center>
+            <?
+                }
+            }
+            ?>
+        </div>
+    </div>
     <div class="row mt-4  justify-content-center">
-    <a href="index.php" type="button" class="btn-close " aria-label="Close"></a>
+        <a href="index.php" type="button" class="btn-close " aria-label="Close"></a>
         <div class="col-6 card bg-light">
             <h2 class="fs-1 text-center pt-3 ">
                 Sign up
@@ -61,7 +90,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <div class="input-group mt-3">
                     <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
-                    <input type="password" name="c_password" id="" placeholder="Confirm Password" class="form-control">
+                    <input type="password" name="c_password" id="" placeholder="Confirm Password" class="form-control" >
                 </div>
                 <div class="input-group mt-3">
                     <input type="submit" name="submit" id="" class="btn btn-outline-success btn-lg w-100 m-5">
@@ -70,6 +99,5 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
 </div>
-
 
 <? include 'footer.php'; ?>
