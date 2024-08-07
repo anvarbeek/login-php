@@ -9,9 +9,6 @@ session_start();
 
 
 if (isset($_POST['submit1'])) {
-    if($_SESSION['submit1'] == true){
-        header('location:adminPanel.php?error=ha');
-    }
     $users = $_POST['users'];
     $users = $_POST['passwords'];
     if (isset($_POST['users']) && isset($_POST['passwords'])) {
