@@ -16,11 +16,20 @@ if (isset($_POST['submit'])) {
     if (isset($name) && isset($user) && isset($pass) && isset($passC)) {
         if ($name != "" && $user != "" && $pass != "" && $pass != "") {
             if ($pass == $passC) {
-                array_push($_SESSION['xotira'], [
-                    'user' => $user,
-                    'pass' => $pass
-                ]);
-                header('location:login1.php');
+                
+                    foreach($_SESSION['xotira'] as $xotira ){
+                        if($user != $xotira['user']){
+                           array_push($_SESSION['xotira'],[
+                            'user' => $user,
+                            'pass' => $pass
+                            
+                        ]);
+                        header('location:login1.php');
+                        }else{
+                            header('location:login.php?error=userbor');
+                        }
+                    }
+              
             } else {
                 header('location:login.php?error=true');
             }
@@ -64,6 +73,14 @@ if (isset($_POST['submit'])) {
                     </center>
             <?
                 }
+                if ($_GET['error'] == 'userbor') {
+                    ?>
+        
+                            <center class="mt-5 mb-5">
+                                <h1 class="alert alert-danger"> <i class="bi bi-exclamation-octagon-fill "></i>Bunday foydalanuvchi bor</h1>
+                            </center>
+                    <?
+                        }
             }
             ?>
         </div>
