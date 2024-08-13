@@ -16,20 +16,12 @@ if (isset($_POST['submit'])) {
     if (isset($name) && isset($user) && isset($pass) && isset($passC)) {
         if ($name != "" && $user != "" && $pass != "" && $pass != "") {
             if ($pass == $passC) {
-                
-                    foreach($_SESSION['xotira'] as $xotira ){
-                        if($user != $xotira['user']){
-                           array_push($_SESSION['xotira'],[
-                            'user' => $user,
-                            'pass' => $pass
-                            
-                        ]);
-                        header('location:login1.php');
-                        }else{
-                            header('location:login.php?error=userbor');
-                        }
-                    }
-              
+                array_push($_SESSION['xotira'], [
+                    'name' => $name,
+                    'user' => $user,
+                    'pass' => $pass
+                ]);
+                header('location:login1.php');
             } else {
                 header('location:login.php?error=true');
             }
@@ -71,16 +63,16 @@ if (isset($_POST['submit'])) {
                     <center class="mt-5 mb-5">
                         <h1 class="alert alert-danger"> <i class="bi bi-exclamation-octagon-fill "></i> Parollar bir birga mos emas</h1>
                     </center>
-            <?
+                <?
                 }
                 if ($_GET['error'] == 'userbor') {
-                    ?>
-        
-                            <center class="mt-5 mb-5">
-                                <h1 class="alert alert-danger"> <i class="bi bi-exclamation-octagon-fill "></i>Bunday foydalanuvchi bor</h1>
-                            </center>
-                    <?
-                        }
+                ?>
+
+                    <center class="mt-5 mb-5">
+                        <h1 class="alert alert-danger"> <i class="bi bi-exclamation-octagon-fill "></i>Bunday foydalanuvchi bor</h1>
+                    </center>
+            <?
+                }
             }
             ?>
         </div>
@@ -107,7 +99,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <div class="input-group mt-3">
                     <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
-                    <input type="password" name="c_password" id="" placeholder="Confirm Password" class="form-control" >
+                    <input type="password" name="c_password" id="" placeholder="Confirm Password" class="form-control">
                 </div>
                 <div class="input-group mt-3">
                     <input type="submit" name="submit" id="" class="btn btn-outline-success btn-lg w-100 m-5">
